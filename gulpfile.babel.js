@@ -138,16 +138,48 @@ gulp.task('html', () => {
 });
 
 gulp.task('copy-vendor-files', () => {
-    //fonts
 
-    //scripts
+    // Local vendor files
     gulp.src([
         './app/scripts/vendor/**',
     ])
         .pipe(gulp.dest('.tmp/scripts/vendors/'))
         .pipe(gulp.dest('dist/scripts/vendors/'));
 
-    //styles
+    gulp.src([
+        './app/styles/vendor/**',
+    ])
+        .pipe(gulp.dest('.tmp/styles/vendors/'))
+        .pipe(gulp.dest('dist/styles/vendors/'));
+
+    // Bower vendor files
+
+    gulp.src([
+        './bower_components/jquery/dist/jquery.min.js',
+        './bower_components/bootstrap/dist/js/bootstrap.min.js',
+        './bower_components/tether/dist/js/tether.min.js',
+        './bower_components/angular/angular.min.js'
+    ])
+        .pipe(gulp.dest('.tmp/scripts/vendors/'))
+        .pipe(gulp.dest('dist/scripts/vendors/'));
+
+    gulp.src([
+        './bower_components/bootstrap/dist/css/bootstrap.min.css',
+        './bower_components/tether/dist/css/tether.min.css',
+        './bower_components/components-font-awesome/css/font-awesome.min.css'
+    ])
+        .pipe(gulp.dest('.tmp/styles/vendors/'))
+        .pipe(gulp.dest('dist/styles/vendors/'));
+
+    gulp.src([
+        './bower_components/components-font-awesome/fonts/fontawesome-webfont.woff',
+        './bower_components/components-font-awesome/fonts/fontawesome-webfont.woff2',
+        './bower_components/components-font-awesome/fonts/fontawesome-webfont.ttf',
+        './bower_components/components-font-awesome/fonts/fontawesome-webfont.svg'
+    ])
+        .pipe(gulp.dest('.tmp/styles/fonts/'))
+        .pipe(gulp.dest('dist/styles/fonts/'));
+
 });
 
 gulp.task('copy-data', () => {
