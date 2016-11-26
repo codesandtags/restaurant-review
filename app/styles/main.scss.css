@@ -48,18 +48,18 @@ body {
 }
 
 .carousel-inner > div:nth-child(1) {
-    background-size: cover;
     background: url("../images/restaurant-header-1.jpg") no-repeat;
+    background-size: cover;
 }
 
 .carousel-inner > div:nth-child(2) {
-    background-size: cover;
     background: url("../images/restaurant-header-2.jpg") no-repeat;
+    background-size: cover;
 }
 
 .carousel-inner > div:nth-child(3) {
-    background-size: cover;
     background: url("../images/restaurant-header-3.jpg") no-repeat;
+    background-size: cover;
 }
 
 /* MARKETING CONTENT
@@ -113,5 +113,18 @@ body {
 @media (min-width: 62em) {
     .featurette-heading {
         margin-top: 7rem;
+    }
+}
+
+@media (min-width: 100em) {
+    /* Declare heights because of positioning of img element */
+    .carousel-item {
+        height: 30rem;
+        min-width: 100%;
+    }
+
+    .carousel-item > img {
+        height: 30rem;
+        min-width: 100%;
     }
 }

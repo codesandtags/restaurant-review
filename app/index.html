@@ -81,8 +81,27 @@
     </a>
 </div><!-- /.carousel -->
 
-<header>
-    <div ng-controller="searchController"></div>
+<header ng-controller="searchController">
+    <form>
+        <div class="form-group col-xs-12 col-lg-4 offset-lg-1">
+            <label for="city" class="col-xs-12 col-form-label">City</label>
+            <div class="col-xs-12">
+                <input type="search" class="form-control" id="city"
+                       placeholder="What cousine type you want?">
+            </div>
+        </div>
+        <div class="form-group col-xs-12 col-lg-4">
+            <label for="cousineType" class="col-xs-12 col-form-label">Cousine Type</label>
+            <div class="col-xs-12">
+                <input type="search" class="form-control" id="cousineType"
+                       placeholder="What cousine type you want?">
+            </div>
+        </div>
+        <div class="form-group col-xs-12 col-lg-1 text-xs-center">
+            <p>&nbsp;</p>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
 </header>
 
 
@@ -92,6 +111,8 @@
 <script src="scripts/vendors/bootstrap.min.js"></script>
 <script src="scripts/vendors/angular.min.js"></script>
 <script src="scripts/main.min.js"></script>
+<!-- <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnryrOEJo4N_L225rxRLQaKUziXsWHxjY&libraries=places"></script>
 <!-- End Scripts -->
 </body>
 </html>
