@@ -1,6 +1,6 @@
 angular.module('restaurantApp')
     .component('searchRestaurant', {
-        templateUrl: 'search.html',
+        templateUrl: '/scripts/components/search/search.html',
         controller: function SearchController() {
 
             this.showSugestions = function() {

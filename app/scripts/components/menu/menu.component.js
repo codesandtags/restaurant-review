@@ -1,4 +1,4 @@
 angular.module('restaurantApp')
     .component('menuApp', {
-       templateUrl: 'menu.html'
+       templateUrl: '/scripts/components/menu/menu.html'
     });

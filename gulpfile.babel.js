@@ -225,7 +225,7 @@ gulp.task('copy-data', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'copy-vendor-files', 'styles'], () => {
+gulp.task('serve', ['scripts', 'copy-components', 'copy-vendor-files', 'styles'], () => {
     browserSync({
         notify: false,
         // Customize the Browsersync console logging prefix
@@ -266,7 +266,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
     runSequence(
         'styles',
-        ['lint', 'html', 'scripts', 'copy-vendor-files', 'images', 'copy'],
+        ['lint', 'html', 'scripts', 'copy-components', 'copy-vendor-files', 'images', 'copy'],
         //'copy-service-worker',
         cb
     )
