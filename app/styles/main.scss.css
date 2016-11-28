@@ -209,3 +209,14 @@ input:focus {
     background: #efefef;
     padding-top: 0.7em;
 }
+
+header {
+    background: #f5f5f5;
+}
+
+#autocomplete {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 99%;
+}
