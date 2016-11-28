@@ -1,0 +1,25 @@
+<!-- Carousel
+   ================================================== -->
+<div id="{{$ctrl.carouselId}}" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#{{$ctrl.carouselId}}" ng-repeat="item in $ctrl.items" data-slide-to="{{item.id}}" ng-class="{active: item.isActive}"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item" ng-repeat="item in $ctrl.items" ng-class="{active: item.isActive}">
+            <div class="container">
+                <div class="carousel-caption {{item.classAlign}}">
+                    <h1>{{item.title}}</h1>
+                    <p>{{item.description}}</p>
+                    <p><a class="btn btn-lg btn-primary" href="{{item.targetButton}}" role="button">{{item.textButton}}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#{{$ctrl.carouselId}}" role="button" data-slide="prev">
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#{{$ctrl.carouselId}}" role="button" data-slide="next">
+        <span class="sr-only">Next</span>
+    </a>
+</div><!-- /.carousel -->

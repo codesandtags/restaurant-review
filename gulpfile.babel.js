@@ -97,9 +97,8 @@ gulp.task('scripts', () =>
         //       to be correctly concatenated
         './app/scripts/app.js',
         './app/scripts/route.js',
-        './app/scripts/controllers/*.js',
+        './app/scripts/components/*.js',
         './app/scripts/services/*.js',
-        './app/scripts/directives/*app.js',
         './app/scripts/main.js'
         // Other scripts
     ])
