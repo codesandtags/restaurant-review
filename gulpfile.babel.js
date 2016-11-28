@@ -87,6 +87,39 @@ gulp.task('styles', () => {
         .pipe(gulp.dest('dist/styles'));
 });
 
+gulp.task('copy-components', () => {
+    gulp.src([
+        './app/scripts/components/**/*.js',
+    ])
+        .pipe($.newer('.tmp/scripts/components'))
+        .pipe($.sourcemaps.init())
+        .pipe($.babel())
+        .pipe($.uglify({preserveComments: 'some'}))
+        .pipe($.size({title: 'components-scripts'}))
+        .pipe($.sourcemaps.write())
+        .pipe(gulp.dest('.tmp/scripts/components/'))
+        .pipe(gulp.dest('dist/scripts/components/'));
+
+    gulp.src([
+        './app/scripts/components/**/*.html',
+    ])
+        .pipe($.htmlmin({
+            removeComments: true,
+            collapseWhitespace: true,
+            collapseBooleanAttributes: true,
+            removeAttributeQuotes: true,
+            removeRedundantAttributes: true,
+            removeEmptyAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            removeOptionalTags: true
+        }))
+        .pipe($.size({title: 'components-html'}))
+        .pipe(gulp.dest('.tmp/scripts/components/'))
+        .pipe(gulp.dest('dist/scripts/components/'));
+});
+
+
 // Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
 // to enable ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
 // `.babelrc` file.
@@ -95,19 +128,14 @@ gulp.task('scripts', () =>
         // Note: Since we are not using useref in the scripts build pipeline,
         //       you need to explicitly list your scripts here in the right order
         //       to be correctly concatenated
-        './app/scripts/app.js',
-        './app/scripts/route.js',
-        './app/scripts/components/*.js',
-        './app/scripts/services/*.js',
-        './app/scripts/main.js'
-        // Other scripts
+        './app/scripts/app.js'
     ])
         .pipe($.newer('.tmp/scripts'))
         .pipe($.sourcemaps.init())
         .pipe($.babel())
         .pipe($.concat('main.min.js'))
         .pipe($.sourcemaps.write())
-        .pipe ($.uglify ({preserveComments: 'some'}))
+        .pipe($.uglify({preserveComments: 'some'}))
         // Output files
         .pipe($.size({title: 'scripts'}))
         .pipe($.sourcemaps.write('.'))

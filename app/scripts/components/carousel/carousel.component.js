@@ -1,5 +1,5 @@
 angular.module('restaurantApp').component('carouselApp', {
-    templateUrl: '../../views/carousel.html',
+    templateUrl: 'carousel.html',
     controller: function carouselController() {
         this.carouselId = 'restaurantCarousel';
         this.items = [{

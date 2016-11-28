@@ -1,3 +1,5 @@
 'use strict';
-angular.module('restaurantApp', []);
-console.log('App...');
+(function() {
+    angular.module('restaurantApp', []);
+    console.log('App...');
+}());
