@@ -1,18 +1,19 @@
 'use strict';
-
 // This gulpfile makes use of new JavaScript features.
 // Babel handles this without us having to do anything. It just works.
 // You can read more about the new JavaScript features here:
 // https://babeljs.io/docs/learn-es2015/
-
-import gulp from 'gulp';
-import del from 'del';
-import runSequence from 'run-sequence';
-import browserSync from 'browser-sync';
-import gulpLoadPlugins from 'gulp-load-plugins';
+import gulp from "gulp";
+import del from "del";
+import runSequence from "run-sequence";
+import browserSync from "browser-sync";
+import gulpLoadPlugins from "gulp-load-plugins";
+import yargs from "yargs";
+import file from "gulp-file";
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
+const argv = yargs.argv;
 
 // Lint JavaScript
 gulp.task('lint', () =>
@@ -244,6 +245,9 @@ gulp.task('serve', ['scripts', 'copy-components', 'copy-vendor-files', 'styles']
     gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
     gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', 'copy-components', reload]);
     gulp.watch(['app/images/**/*'], reload);
+
+    // Watch components
+    gulp.watch(['app/scripts/components/**/*'], ['copy-components', reload]);
 });
 
 // Build and serve the output from the dist build
@@ -276,3 +280,36 @@ gulp.task('copy-service-worker', cb =>
     gulp.src('app/service-worker.js')
         .pipe(gulp.dest('dist/'))
 );
+
+gulp.task('create-component', cb => {
+    const componentName = argv.name;
+    const moduleName = argv.module;
+    const exampleCommand = 'e.g. gulp create-component --name myComponent --module myModule';
+
+    if (!argv.name) throw new Error('The component name is needed. ' + exampleCommand);
+    if (!argv.module) throw new Error('The component module is needed. ' + exampleCommand);
+
+    let htmlTemplate = `<div><h2>${componentName}</h2></div>`;
+    let javascriptTemplate =
+    `(function() {
+    angular.module('${moduleName}')
+        .component('${componentName}', {
+            templateUrl: '/scripts/components/${componentName}/${componentName}.html'
+        });
+}());`;
+
+    let componentStructure = [
+        {
+            fileName: `${componentName}.html`,
+            template: htmlTemplate
+        }, {
+            fileName: `${componentName}.component.js`,
+            template: javascriptTemplate
+        }];
+
+    componentStructure.forEach((part) => {
+        file(part.fileName, part.template, {src: true})
+            .pipe(gulp.dest(`app/scripts/components/${componentName}`));
+    });
+
+});

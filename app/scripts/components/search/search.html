@@ -6,7 +6,6 @@
                     <i class="fa fa-map-marker" aria-hidden="true"></i> City
                 </label>
                 <div class="col-xs-12">
-                    {{model.city}}
                     <input type="search" class="form-control" id="city" required
                            placeholder="What cousine type you want?"
                            ng-model="model.city" ng-change="model.showSuggestedCities()">
@@ -17,9 +16,12 @@
                     <i class="fa fa-cutlery" aria-hidden="true"></i> Cousine Type
                 </label>
                 <div class="col-xs-12">
-                    <input type="search" class="form-control" id="cousineType"
+                    <input type="search" class="form-control" id="cousineType" list="cousineTypes"
                            placeholder="What cousine type you want?"
                            ng-model="cousineType">
+                    <datalist id="cousineTypes">
+                        <option value="{{cousineType.label}}" ng-repeat="cousineType in model.cousineTypes"></option>
+                    </datalist>
                 </div>
             </div>
             <div class="form-group col-xs-12 col-lg-1 text-xs-center">
